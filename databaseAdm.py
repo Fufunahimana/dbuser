@@ -113,7 +113,9 @@ class Login:
              Requete()
 
         def importer():
-             Description()
+             #Description()
+             wx=Description()
+             wx.mainloop()
 
         def PE_select():
              Selectione()

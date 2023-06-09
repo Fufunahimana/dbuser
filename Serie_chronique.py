@@ -8,7 +8,7 @@ import mysql.connector
 import os
 
 
-class RequeteIso(Toplevel):
+class chronique(Toplevel):
     def __init__(self):
         super().__init__()
         self.title("NOUVEAU FORAGE")
@@ -894,5 +894,5 @@ class RequeteIso(Toplevel):
 
 
 if __name__ =="__main__":
-    w = RequeteIso()
+    w = chronique()
     w.mainloop()

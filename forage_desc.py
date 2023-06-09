@@ -8,10 +8,9 @@ import mysql.connector
 import os
 
 class Forage_desc(Frame):
-    def __init__(self,foo):
-        super().__init__(foo)
+    def __init__(self):
+        super().__init__()
         self.config(bg="silver")
-        self.foo=foo
         
         
         ##########################LES LISTES UTILISEES##############################
@@ -176,6 +175,5 @@ class Forage_desc(Frame):
         Abort_btn.grid(sticky=W, padx=15, pady=2)
         
 if __name__ =="__main__":
-    f=Tk()
-    w=Forage_desc(f)
+    w=Forage_desc()
     w.mainloop()
