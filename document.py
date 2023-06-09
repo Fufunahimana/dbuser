@@ -33,7 +33,7 @@ class Document(Frame):
         BtnFrame.place(x=0, y=390,width=1237, height=40)
 
         IPE_btn = Button(BtnFrame, text="Ajouter",cursor="hand2", font=("Times new roman",10, "bold"),width=10, bg="green", fg="black")
-        IPE_btn.grid(row=0, column= 0, sticky=W, padx=300, pady=2)
+        IPE_btn.grid(row=0, column= 0, sticky=W, padx=50, pady=2)
 
         IPE_btn = Button(BtnFrame, text="Télécharger",cursor="hand2", font=("Times new roman",10, "bold"),width=10, bg="yellow", fg="black")
         IPE_btn.grid(row=0, column=1, sticky=W, padx=5, pady=2)

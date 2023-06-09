@@ -17,7 +17,7 @@ from MesureEau import*
 from QualiteEau import*
 from document import*
 
-class Description(Toplevel):
+class Description(Tk):
     def __init__(self):
         super().__init__()
         self.title("DESCRIPTION")
@@ -29,7 +29,7 @@ class Description(Toplevel):
         desc = ttk.Notebook(self)
         desc.place(x=0, y=0,height=550)
 
-       
+    
         Local_btn = Forage_desc()
         desc.add(Local_btn,text="Localisation")
 
