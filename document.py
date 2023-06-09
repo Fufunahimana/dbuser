@@ -29,6 +29,20 @@ class Document(Frame):
         scroll_y.config(command=self.tabl_result.yview)
         self.tabl_result.pack(fill=Y,side=LEFT)
 
+        BtnFrame = Frame(self, bd=5, relief=GROOVE, bg="white")
+        BtnFrame.place(x=0, y=390,width=1237, height=40)
+
+        IPE_btn = Button(BtnFrame, text="Ajouter",cursor="hand2", font=("Times new roman",10, "bold"),width=10, bg="green", fg="black")
+        IPE_btn.grid(row=0, column= 0, sticky=W, padx=300, pady=2)
+
+        IPE_btn = Button(BtnFrame, text="Télécharger",cursor="hand2", font=("Times new roman",10, "bold"),width=10, bg="yellow", fg="black")
+        IPE_btn.grid(row=0, column=1, sticky=W, padx=5, pady=2)
+
+        IPE_btn = Button(BtnFrame, text="Voir",cursor="hand2", font=("Times new roman",10, "bold"),width=10, bg="cyan", fg="black")
+        IPE_btn.grid(row=0, column= 2, sticky=W, padx=5, pady=2)
+
+        IPE_btn = Button(BtnFrame, text="Supprimer",cursor="hand2", font=("Times new roman",10, "bold"),width=10, bg="red", fg="black")
+        IPE_btn.grid(row=0, column=3, sticky=W, padx=5, pady=2)
 
 
 

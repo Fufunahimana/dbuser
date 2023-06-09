@@ -200,8 +200,9 @@ class Forage2(Frame):
         self.lbl_der_dat_modif = Label(AttrFrame, text="Dérnière Date de modification :", font=("times new roman",12,"bold"),bg="white")
         self.lbl_der_dat_modif.grid(row=1, column=0, sticky=W, padx=5, pady=2)
         
-        self.txt_der_dat_modif = ttk.Entry(AttrFrame, font=("times new roman",12))
-        self.txt_der_dat_modif.grid(row=1, column=1, sticky=W, padx=15, pady=2)
+        self.ecri_der_dat_modif = DateEntry(AttrFrame, font=("times new roman", 10), bg="lightyellow", state="readonly", locale='fr_FR',date_pattern = 'dd/mm/yyyy')
+        self.ecri_der_dat_modif.grid(row=1, column=1, sticky=W, padx=5, pady=2)
+
         
         self.lbl_der_modif_par = Label(AttrFrame, text="Dérnière modification par :", font=("times new roman",12,"bold"),bg="white")
         self.lbl_der_modif_par.grid(row=2, column=0, sticky=W, padx=5, pady=2)

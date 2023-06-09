@@ -34,7 +34,7 @@ class Login:
             
             
         lblheure = Label(self.root, text="HH:MM:SS", font=("times new roman", 15, "bold"),bg="white", fg="black")
-        lblheure.place(x=5, y=2, width=120, height=50)
+        lblheure.grid(row=0, column=0, sticky=W, padx=5, pady=5)
         
         heure()
         
@@ -88,20 +88,26 @@ class Login:
 
 
         ##############entête #######################
-        user = Entry(root, font=("times new roman",15), bg="gray").place(x=250, y=10, width=150)
-        nom_u = Entry(root, font=("times new roman",15), bg="olive").place(x=400, y=10, width=150)
-        Group = Entry(root, font=("times new roman",15), bg="cyan").place(x=550, y=10, width=150)
-        nom_gr = Entry(root, font=("times new roman",15), bg="beige").place(x=700, y=10, width=150)
-        serveur = Entry(root, font=("times new roman",15), bg="lavender").place(x=850, y=10, width=150)
-        id_serv = Entry(root, font=("times new roman",15), bg="khaki").place(x=1000, y=10, width=150)
-        db = Entry(root, font=("times new roman",15), bg="silver").place(x=1150, y=10, width=150)
-        nom_db = Entry(root, font=("times new roman",15), bg="brown").place(x=1300, y=10, width=150)
-
+        user = Entry(root, font=("times new roman",12), bg="gray")
+        user.grid(row=0, column=2, sticky=W, padx=2, pady=5)
+        nom_u = Entry(root, font=("times new roman",12), bg="olive")
+        nom_u.grid(row=0, column=3, sticky=W, padx=2, pady=5)
+        Group = Entry(root, font=("times new roman",12), bg="cyan")
+        Group.grid(row=0, column= 4, sticky=W, padx=2, pady=5)
+        nom_gr = Entry(root, font=("times new roman",12), bg="beige")
+        nom_gr.grid(row=0, column= 5, sticky=W, padx=2, pady=5)
+        serveur = Entry(root, font=("times new roman",12), bg="lavender")
+        serveur.grid(row=0, column= 6, sticky=W, padx=2, pady=5)
+        id_serv = Entry(root, font=("times new roman",12), bg="khaki")
+        id_serv.grid(row=0, column= 7, sticky=W, padx=2, pady=5)
+        db = Entry(root, font=("times new roman",12), bg="silver")
+        db.grid(row=0, column= 8, sticky=W, padx=2, pady=5)
+        nom_db = Entry(root, font=("times new roman",12), bg="brown")
+        nom_db.grid(row=0, column= 9, sticky=W, padx=2, pady=5)
+        
         #############boutons divers###########################
         def forage():
              Forage()
-            
-
 
         def requete():
              Requete()
@@ -114,29 +120,26 @@ class Login:
              
         
              
-             
-
-
-        NPE_btn = Button(Part1, text="Nouveau point d'eau",cursor="hand2",command=forage,font=("Times new roman",14, "bold"), bd=0, bg="cyan", fg="black", relief=SUNKEN)
+        NPE_btn = Button(Part1, text="Nouveau point d'eau",cursor="hand2",command=forage,font=("Times new roman",14, "bold"),width=22, bg="cyan", fg="black",relief=GROOVE)
         NPE_btn.grid(row=0, sticky=W, padx=5, pady=2)
 
-        MPE_btn = Button(Part1, text="Modifier un Point d'eau",cursor="hand2", font=("Times new roman",14, "bold"), bd=0, bg="silver", fg="black", relief=SUNKEN)
+        MPE_btn = Button(Part1, text="Modifier un Point d'eau",cursor="hand2", font=("Times new roman",14, "bold"),width=22,bg="silver", fg="black",relief=GROOVE)
         MPE_btn.grid(row=1, sticky=W, padx=5, pady=2)
 
-        SPE_btn = Button(Part1, text="Supprimer un Point d'eau",cursor="hand2", font=("Times new roman",14, "bold"), bd=0, bg="silver", fg="black", relief=SUNKEN)
+        SPE_btn = Button(Part1, text="Supprimer un Point d'eau",cursor="hand2", font=("Times new roman",14, "bold"),width=22, bg="silver", fg="black",relief=GROOVE)
         SPE_btn.grid(row=2, sticky=W, padx=5, pady=2)
 
-        RQT_btn = Button(Part1, text="Requêtes",cursor="hand2",command=requete, font=("Times new roman",14, "bold"), bd=0, bg="silver", fg="black", relief=SUNKEN)
+        RQT_btn = Button(Part1, text="Requêtes",cursor="hand2",command=requete, font=("Times new roman",14, "bold"),width=22, bg="silver", fg="black",relief=GROOVE)
         RQT_btn.grid(row=3, sticky=W, padx=5, pady=2)
 
-        SelPE_btn = Button(Part1, text="Selectionner un Point d'eau",cursor="hand2",command=PE_select, font=("Times new roman",14, "bold"), bd=0, bg="silver", fg="black", relief=SUNKEN)
+        SelPE_btn = Button(Part1, text="Selectionner un Point d'eau",cursor="hand2",command=PE_select, font=("Times new roman",14, "bold"),width=22, bg="silver", fg="black",relief=GROOVE)
         SelPE_btn.grid(row=4, sticky=W, padx=5, pady=2)
 
 
-        IPE_btn = Button(Part1, text="Importer un Point d'eau",cursor="hand2",command=importer, font=("Times new roman",14, "bold"), bd=0, bg="silver", fg="black", relief=SUNKEN)
+        IPE_btn = Button(Part1, text="Importer un Point d'eau",cursor="hand2",command=importer, font=("Times new roman",14, "bold"),width=22, bg="silver", fg="black",relief=GROOVE)
         IPE_btn.grid(row=5, sticky=W, padx=5, pady=2)
 
-        SRT_btn = Button(Part1, text="Quiter",cursor="hand2", font=("Times new roman",14, "bold"), bd=0, bg="red", fg="black", relief=SUNKEN)
+        SRT_btn = Button(Part1, text="Quiter",cursor="hand2", font=("Times new roman",14, "bold"),width=22, bg="red", fg="black",relief=GROOVE)
         SRT_btn.grid(row=6, sticky=W, padx=5, pady=2)
 
         ####################partie numero 3######################################
