@@ -6,7 +6,7 @@ from PIL import ImageTk, Image
 from tkcalendar import *
 import mysql.connector
 import os
-from requeteIso import*
+from Isolignes import*
 
 class Requete(Toplevel):
     def __init__(self):
