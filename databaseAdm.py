@@ -45,44 +45,45 @@ class Login:
         Part2.place(x=300, y=50,width=1255,height=300)
 
         scroll_x = Scrollbar(Part2, orient=HORIZONTAL)
-        scroll_y = Scrollbar(Part2, orient=VERTICAL)
         scroll_x.pack(side=BOTTOM, fill=X)
-        scroll_y.pack(side=RIGHT)
+
+        scroll_y = Scrollbar(Part2, orient=VERTICAL)
+        scroll_y.pack(fill=Y,side=LEFT)
 
         columns=("No","id","id_orginal","longitude","latitude","latlong_méthode","altitude_z","altitude_méthode","type_point_d_eau","périmètres_de_protection","province","commune","colline","sous_colline","projet","sous_la_responsabilité","entrée_provisoire","remarque","dernière_date_modification","dernière_modification_par")
         
-        self.tabl_result = ttk.Treeview(Part2, columns=columns,show="headings", yscrollcommand=scroll_y.set, xscrollcommand=scroll_x.set)
+        tabl_result = ttk.Treeview(Part2, columns=columns,show="headings", yscrollcommand=scroll_y.set, xscrollcommand=scroll_x.set)
              
-        scroll_x.config(command=self.tabl_result.xview)
-        scroll_y.config(command=self.tabl_result.yview)
+        scroll_x.config(command=tabl_result.xview)
+        scroll_y.config(command=tabl_result.yview)
         
-        self.tabl_result.heading("No", text="No.")
-        self.tabl_result.heading("id", text="id")
-        self.tabl_result.heading("id_orginal", text="id_orginal")
-        self.tabl_result.heading("longitude", text="longitude")
-        self.tabl_result.heading("latitude", text="latitude")
-        self.tabl_result.heading("latlong_méthode", text="latlong_méthode")
-        self.tabl_result.heading("altitude_z", text="altitude_z")
-        self.tabl_result.heading("altitude_méthode", text="altitude_méthode")
-        self.tabl_result.heading("type_point_d_eau", text="type_point_d_eau") 
-        self.tabl_result.heading("périmètres_de_protection", text="périmètres_de_protection")
-        self.tabl_result.heading("province", text="province")
-        self.tabl_result.heading("commune", text="commune")
-        self.tabl_result.heading("colline", text="colline")
-        self.tabl_result.heading("sous_colline", text="sous_colline")
-        self.tabl_result.heading("projet", text="projet")
-        self.tabl_result.heading("sous_la_responsabilité", text="sous_la_responsabilité")
-        self.tabl_result.heading("entrée_provisoire", text="entrée_provisoire")
-        self.tabl_result.heading("remarque", text="remarque")
-        self.tabl_result.heading("dernière_date_modification", text="dernière_date_modification") 
-        self.tabl_result.heading("dernière_modification_par", text="dernière_modification_par")
+        tabl_result.heading("No", text="No.")
+        tabl_result.heading("id", text="id")
+        tabl_result.heading("id_orginal", text="id_orginal")
+        tabl_result.heading("longitude", text="longitude")
+        tabl_result.heading("latitude", text="latitude")
+        tabl_result.heading("latlong_méthode", text="latlong_méthode")
+        tabl_result.heading("altitude_z", text="altitude_z")
+        tabl_result.heading("altitude_méthode", text="altitude_méthode")
+        tabl_result.heading("type_point_d_eau", text="type_point_d_eau") 
+        tabl_result.heading("périmètres_de_protection", text="périmètres_de_protection")
+        tabl_result.heading("province", text="province")
+        tabl_result.heading("commune", text="commune")
+        tabl_result.heading("colline", text="colline")
+        tabl_result.heading("sous_colline", text="sous_colline")
+        tabl_result.heading("projet", text="projet")
+        tabl_result.heading("sous_la_responsabilité", text="sous_la_responsabilité")
+        tabl_result.heading("entrée_provisoire", text="entrée_provisoire")
+        tabl_result.heading("remarque", text="remarque")
+        tabl_result.heading("dernière_date_modification", text="dernière_date_modification") 
+        tabl_result.heading("dernière_modification_par", text="dernière_modification_par")
         
         
-        self.tabl_result.pack(fill=Y,side=LEFT)
+        tabl_result.pack(fill=Y,side=LEFT)
         
         
         for i in range (1,100):
-            self.tabl_result.insert("", END,values=columns)
+            tabl_result.insert("", END,values=columns)
         
         #self.tabl_result.bind("<ButtonRelease-1>",self.information)
 

@@ -17,21 +17,28 @@ class Selectione(Toplevel):
         self.resizable(0,0)
 
         recherch_par = Label(self, text="Rechercher par",font=("times new roman",15, "bold"),bg="cyan",fg="black")
-        recherch_par.grid(row=0, column=0,sticky=W, padx=5, pady=5)
+        recherch_par.place(x=5,y=5,width=180,height=30)
 
         recherch_text = Entry(self, font=("times new roman",15), bg="white")
-        recherch_text.grid(row=0, column=1,sticky=W, padx=5, pady=5)
+        recherch_text.place(x=190,y=5,width=180,height=30)
 
-        recherch_txt = ttk.Combobox(self, font=("times new roman",12), state="readonly")                               
-        recherch_txt["values"]=("ID","orginal_ID","Province","Commune","Colline","Autre")
-        recherch_txt.grid(row=0, column=2,sticky=W, padx=5, pady=5)
+        recherch_txt = ttk.Combobox(self, font=("times new roman",14), state="readonly")                               
+        recherch_txt["values"]=("id","id_orginal","longitude","latitude","latlong_méthod","altitude_z","altitude_méthode","type_point_d_eau","périmètre_de_protection","Province","Commune","Colline","sous_colline","projet","sous_la_responsabilité_de","entrée_provisoire","remarque","dernière_modification_par")
+        recherch_txt.place(x=380,y=5,width=180,height=30)
         recherch_txt.current(2)
         
-        self.btn_rechercher = Button(self, text="Rechercher", font=("times new roman", 15, "bold"), bg='gray')
-        self.btn_rechercher.grid(row=0, column=3,sticky=W, padx=5, pady=5)
+        self.btn_rechercher = Button(self, text="Rechercher", font=("times new roman", 13, "bold"), bg='gray')
+        self.btn_rechercher.place(x=570,y=5,width=150,height=30)
 
-        self.btn_affich = Button(self, text="Tous Afficher", font=("times new roman", 13, "bold"), bg='gray')
-        self.btn_affich.grid(row=0, column=4,sticky=W, padx=5, pady=5)
+        self.btn_affich = Button(self, text="Tous Afficher", font=("times new roman", 13, "bold"), bg='yellow')
+        self.btn_affich.place(x=725,y=5,width=120,height=30)
+
+        searchF = Frame(self, bd=5, relief=GROOVE, bg="white",width=300, height=400)
+        searchF.place(x=5,y=50,width=840,height=490)
+
+        result = Entry(searchF, font=("times new roman",15), bg="white", state="readonly")
+        result.place(x=5,y=5,width=820,height=470)
+
 
 
 

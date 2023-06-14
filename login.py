@@ -68,6 +68,7 @@ class Login:
 
         if self.ecrit_user_text.get()=="" or self.ecrit_pwd.get() =="":
             messagebox.showerror("Erreur", "Veiller Saisir Email et le mot de passe", parant=self.root)
+            
         else:
             try:
                 mydb = psycopg2.connect(host="192.168.88.201",database="hydrogeology", user="postgres", password="igebu99")
