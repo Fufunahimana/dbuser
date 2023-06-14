@@ -16,8 +16,9 @@ from exploitationFor import*
 from MesureEau import*
 from QualiteEau import*
 from document import*
+from ajoutExploitation import*
 
-class Description(Tk):
+class Description(Toplevel):
     def __init__(self):
         super().__init__()
         self.title("DESCRIPTION")

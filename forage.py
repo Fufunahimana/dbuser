@@ -156,8 +156,8 @@ class Forage(Toplevel):
         self.lbl_Rmq = Label(AttrFrame, text="Remarque :", font=("times new roman",12),bg="white")
         self.lbl_Rmq.grid(row=4, column=0, sticky=W, padx=5, pady=2)
 
-        self.txt_Rmq = Text(AttrFrame, font=("times new roman",12),width=20,height=5, relief=RAISED)
-        self.txt_Rmq.grid(row=4, column=1, sticky=W, padx=5, pady=5)
+        self.txt_Rmq = Text(AttrFrame, font=("times new roman",12),width=20,height=5, relief=SOLID)
+        self.txt_Rmq.grid(row=4, column=1, sticky=W, padx=15, pady=5)
         
         self.lbl_der_dat_modif = Label(AttrFrame, text="Dérnière Date de modification :", font=("times new roman",12,"bold"),bg="white")
         self.lbl_der_dat_modif.grid(row=5, column=0, sticky=W, padx=5, pady=2)
@@ -182,7 +182,7 @@ class Forage(Toplevel):
 
         Abort_btn = Button(Part2_btn, text="Annuler",cursor="hand2", font=("Times new roman",17, "bold"),bg="red", fg="black")
         Abort_btn.grid(row=0, column=1,sticky=W)
-        #row=30, column=1, 
+
         
 
         

@@ -6,6 +6,7 @@ from PIL import ImageTk, Image
 from tkcalendar import *
 import mysql.connector
 import os
+from ajoutQualit import*
 
 class MesureEau(Frame):
     def __init__(self):
@@ -29,6 +30,10 @@ class MesureEau(Frame):
         scroll_y.config(command=self.tabl_result.yview)
         self.tabl_result.pack(fill=Y,side=LEFT)
 
+        def ajouter():
+            AddQualt()
+            
+
         BtnFrame = Frame(self, bd=5, relief=GROOVE, bg="white")
         BtnFrame.place(x=0, y=390,width=1237, height=40)
 
@@ -41,7 +46,7 @@ class MesureEau(Frame):
         IPE_btn = Button(BtnFrame, text="Importer",cursor="hand2", font=("Times new roman",10, "bold"),width=10, bg="cyan", fg="black")
         IPE_btn.grid(row=0, column= 2, sticky=W, padx=5, pady=2)
 
-        IPE_btn = Button(BtnFrame, text="Ajouter",cursor="hand2", font=("Times new roman",10, "bold"),width=10, bg="green", fg="black")
+        IPE_btn = Button(BtnFrame, text="Ajouter",cursor="hand2",command=ajouter, font=("Times new roman",10, "bold"),width=10, bg="green", fg="black")
         IPE_btn.grid(row=0, column=3, sticky=W, padx=5, pady=2)
         
         IPE_btn = Button(BtnFrame, text="Modifier",cursor="hand2", font=("Times new roman",10, "bold"),width=10, bg="yellow", fg="black")

@@ -120,6 +120,10 @@ class Login:
              Selectione()
              
         
+
+        def quit():
+          self.root.destroy()
+
              
         NPE_btn = Button(Part1, text="Nouveau point d'eau",cursor="hand2",command=forage,font=("Times new roman",14, "bold"),width=22, bg="cyan", fg="black",relief=GROOVE)
         NPE_btn.grid(row=0, sticky=W, padx=5, pady=2)
@@ -140,7 +144,7 @@ class Login:
         IPE_btn = Button(Part1, text="Importer un Point d'eau",cursor="hand2",command=importer, font=("Times new roman",14, "bold"),width=22, bg="silver", fg="black",relief=GROOVE)
         IPE_btn.grid(row=5, sticky=W, padx=5, pady=2)
 
-        SRT_btn = Button(Part1, text="Quiter",cursor="hand2", font=("Times new roman",14, "bold"),width=22, bg="red", fg="black",relief=GROOVE)
+        SRT_btn = Button(Part1, text="Quiter",cursor="hand2",command=quit, font=("Times new roman",14, "bold"),width=22, bg="red", fg="black",relief=GROOVE)
         SRT_btn.grid(row=6, sticky=W, padx=5, pady=2)
 
         ####################partie numero 3######################################
