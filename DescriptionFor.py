@@ -24,6 +24,7 @@ class Description(Toplevel):
         self.title("DESCRIPTION")
         self.geometry("850x550+400+200")
         self.config(bg="silver")
+        self.iconbitmap('igebulogo.ico')
         self.grab_set()
         self.resizable(0,0)
 

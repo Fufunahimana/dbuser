@@ -15,6 +15,7 @@ class Requete(Toplevel):
         super().__init__()
         self.title("Request")
         self.geometry("650x450+400+200")
+        self.iconbitmap('logodrapeau.ico')
         self.config(bg="silver")
         self.grab_set()
         self.resizable(0,0)
@@ -32,7 +33,7 @@ class Requete(Toplevel):
         btn_Req_donn_gen = Button(self, text="Requêtes sur les données générales...",cursor="hand2",command=self.donneG, font=("Times new roman",18, "bold"), bd=0, bg="yellow", fg="black",relief=GROOVE)
         btn_Req_donn_gen.place(x=150,y=250,width=400)
 
-        btn_quit_req = Button(self, text="Quiter",cursor="hand2", font=("Times new roman",18, "bold"), bd=0, bg="red", fg="black",relief=GROOVE)
+        btn_quit_req = Button(self, text="Quiter",cursor="hand2",command=self.quit, font=("Times new roman",18, "bold"), bd=0, bg="red", fg="black",relief=GROOVE)
         btn_quit_req.place(x=550,y=400)
 
     
@@ -46,7 +47,9 @@ class Requete(Toplevel):
     
     def donneG(self):
             DonneeG()
-
+    def quit(self):
+          self.destroy()
+          
 
 if __name__ =="__main__":
     w=Requete()

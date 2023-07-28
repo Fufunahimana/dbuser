@@ -7,11 +7,13 @@ from tkcalendar import *
 import mysql.connector
 import os
 
+
 class Selectione(Toplevel):
     def __init__(self):
         super().__init__()
         self.title("NOUVEAU FORAGE")
         self.geometry("850x550+400+200")
+        self.iconbitmap('logodrapeau.ico')
         self.config(bg="cyan")
         self.grab_set()
         self.resizable(0,0)
@@ -34,11 +36,13 @@ class Selectione(Toplevel):
         self.btn_affich.place(x=725,y=5,width=120,height=30)
 
         searchF = Frame(self, bd=5, relief=GROOVE, bg="white",width=300, height=400)
-        searchF.place(x=5,y=50,width=840,height=490)
+        searchF.place(x=5,y=50,width=840,height=450)
 
-        result = Entry(searchF, font=("times new roman",15), bg="white", state="readonly")
-        result.place(x=5,y=5,width=820,height=470)
+        result = Text(searchF, font=("times new roman",15), bg="white")
+        result.place(x=5,y=5,width=820,height=430)
 
+        Abrt = Button(self,text="Quiter",cursor="hand2",command=quit, font=("Times new roman",13, "bold"),width=15, bg="red", fg="black")
+        Abrt.place(x=735,y=510,width=110)
 
 
 

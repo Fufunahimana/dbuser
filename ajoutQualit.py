@@ -12,6 +12,7 @@ class AddQualt(Toplevel):
         super().__init__()
         self.title("EXPLOITATION FORAGE")
         self.geometry("770x650+400+100")
+        self.iconbitmap('igebulogo.ico')
         self.config(bg="white")
         self.grab_set()
         self.resizable(0,0)
@@ -86,7 +87,7 @@ class AddQualt(Toplevel):
 #######################################Entry###########################################################################################
         
         Part3 = Frame(self, bd=5, bg="silver")
-        Part3.place(x=5, y=180, width=760,height=390)
+        Part3.place(x=5, y=180, width=760,height=400)
 
         simple_id = Label(Part3, text="simple_ID",borderwidth=1, font=("times new roman",12,"bold"),width=21, bg="khaki", relief=SOLID)
         simple_id.grid(row=0, column=0, sticky=W, padx=0, pady=0)
@@ -219,7 +220,7 @@ class AddQualt(Toplevel):
         remarq = Label(Part3, text="remarque",borderwidth=1, font=("times new roman",12,"bold"),width=21, bg="khaki", relief=SOLID)
         remarq.grid(row=14, column=0, sticky=W, padx=0, pady=0)
 
-        remarq = Entry(Part3, font=("times new roman",12),width=22,borderwidth=1,relief=SOLID,bg="white",)
+        remarq = Text(Part3, font=("times new roman",12),width=22,height=2,borderwidth=1,relief=SOLID,bg="white",)
         remarq.grid(row=14, column=1, sticky=W, padx=0, pady=0)
 
         remarq = Label(Part3, text="Commentaire sur la localisation",borderwidth=1, font=("times new roman",10),width=53,bg="silver", relief=SOLID)

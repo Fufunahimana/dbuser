@@ -33,7 +33,9 @@ class SequenceGeo(Frame):
 
         self.txt_der_modif_par = ttk.Entry(AttrFrame, font=("times new roman",12))
         self.txt_der_modif_par.grid(row=2, column=1, sticky=W, padx=5, pady=2)
+    
 
+   
 
 
 

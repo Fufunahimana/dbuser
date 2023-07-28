@@ -4,6 +4,7 @@ import tempfile
 import random
 from PIL import ImageTk, Image
 from tkcalendar import *
+import psycopg2 
 import mysql.connector
 import os
 
@@ -13,6 +14,7 @@ class RequeteIso(Toplevel):
         super().__init__()
         self.title("NOUVEAU FORAGE")
         self.geometry("810x700+450+50")
+        self.iconbitmap('logodrapeau.ico')
         self.config(bg="white")
         self.grab_set()
         self.resizable(0,0)
@@ -200,7 +202,7 @@ class RequeteIso(Toplevel):
         Col_Nyabitsinda=["Ruharo","Nyaruganda","Remba","Bwome","Nyakiyoga","Nyakibingo","Muramba","Nyagitika","Bihembe","Mureba","Mago","Murehe","Nyarumuri","Gatare Gasenyi","Nyamasenga","Nyagahanda","Ndago","Kirungu","Nyabitsinda"]
         Col_Ruyigi=["Bisinde","Bugarama","Rutonganika","Rutimbura","Kazimya","Nyabigugo","Karambi","Kigamba","Ruyigi rural","Dutwe","Ngarama","Rukaragata","Kirambi","Gisoro","Nyagutoha","Nyarunazi","Buruhukiro","Migege","Bunogera","Nganji","Gasanda","Sanzu C U","Ruhwago","Gahemba"]
 
-        PE = ["Forage","Puit","Source"]
+        PE = ["Selection..","Forage","Puit","Source"]
 
         title = Label(self, text="Requête isoligne",bd=15, relief= RAISED, font=('Antiqua', 15, "bold"),bg='cyan', fg='black')
         title.place(x=0,y=0,width=810)
@@ -233,10 +235,12 @@ class RequeteIso(Toplevel):
         txt_PE = ttk.Combobox(Loc_frame, font=("times new roman",10),values=PE, width=25, state="readonly")
         txt_PE.grid(row=3, column=0, sticky=W, padx=5, pady=2)
         txt_PE.current(1)
+        
 
-        SelPE_btn = Button(Loc_frame, text="Toutes",cursor="hand2", font=("Times new roman",10, "bold"),width=15, bg="beige", fg="black")
+        SelPE_btn = Button(Loc_frame, text="Toutes",cursor="hand2",font=("Times new roman",10, "bold"),width=15, bg="beige", fg="black")
         SelPE_btn.grid(row=3,column=1, sticky=W, padx=0, pady=2)
-
+         
+      
         #######################Fonction communes#################################################
 
         #################Bubanza#########################
@@ -283,7 +287,7 @@ class RequeteIso(Toplevel):
 ################### Bujumbura Rural######################## 
           
             elif txt_comm.get()=="Isale":        
-                txt_coln.config(values=Col_Isale)  
+                txt_coln.config(values=Col_Isare)  
                 txt_coln.current(0)
               
             elif txt_comm.get()=="Kabezi":        
@@ -554,7 +558,7 @@ class RequeteIso(Toplevel):
                 txt_coln.current(0)
               
             elif txt_comm.get()=="Nyanza-Lac":        
-                txt_coln.config(values=Col_Nyanza-Lac)  
+                txt_coln.config(values=Col_Nyanza_Lac)  
                 txt_coln.current(0)
 
             elif txt_comm.get()=="Vugizo":        
@@ -654,7 +658,7 @@ class RequeteIso(Toplevel):
                 txt_coln.current(0)
 
             elif txt_comm.get()=="Marangara":        
-                txt_coln.config(values=Col_Marangara)  
+                txt_coln.config(values=col_Marangara)  
                 txt_coln.current(0)
               
             elif txt_comm.get()=="Mwumba":        
@@ -709,8 +713,8 @@ class RequeteIso(Toplevel):
                 txt_coln.config(values=Col_Gitanga)  
                 txt_coln.current(0)
 
-            elif txt_comm.get()=="Mpinga-Kayove":        
-                txt_coln.config(values=Col_Mpinga-Kayove)  
+            elif txt_comm.get()=="Mpinga_Kayove":        
+                txt_coln.config(values=Col_Mpinga_Kayove)  
                 txt_coln.current(0)
 
             elif txt_comm.get()=="Musongati":        
@@ -751,7 +755,7 @@ class RequeteIso(Toplevel):
                 txt_coln.config(values=Col_Ruyigi)  
                 txt_coln.current(0)
 
-        txt_comm.bind("<<ComboboxSelected>>",fonctionComm) 
+        txt_comm.bind("<<ComboboxSelected>>",fonctionComm)
 
    ###############################################Fonction Province#####################################################         
         def fonctionprov(event):
@@ -833,30 +837,106 @@ class RequeteIso(Toplevel):
                 txt_comm.set("Choisir une province") 
 
 
-        txt_prov.bind("<<ComboboxSelected>>",fonctionprov)
+        txt_prov.bind("<<ComboboxSelected>>",fonctionprov) 
+
+        
+        def insertText(event):
+            host="192.168.88.201"
+            db= "hydrogeology"
+            userM="postgres"
+            password= "igebu99"  
+            mydb = psycopg2.connect(host=host,database=db, user=userM, password=password)
+            
+            if txt_prov.get() and txt_comm.get() and txt_coln.get():
+                print ('tout est complet')
+                query1= f"select id from tbl_localisation where province like '{txt_prov.get()}' and commune like '{txt_comm.get()}' and colline like '{txt_coln.get()}' and type_point_d_eau like '{txt_PE.get()}'"
+                query2= f"select count(*) from tbl_localisation where province like '{txt_prov.get()}' and commune like '{txt_comm.get()}' and colline like '{txt_coln.get()}' and type_point_d_eau like '{txt_PE.get()}'"
+                mycursor = mydb.cursor()
+                mycursor.execute(query1)
+                row1 = mycursor.fetchall()
+                
+                mycursor.execute(query2)
+                row2 = mycursor.fetchall()
+
+                txt_NbreStat.delete('1.0',END)
+                txt_aff_frame.delete('1.0',END)
+
+                for i in row1:
+                    print(i[0])
+                    txt_aff_frame.insert(END,f"{i[0]}\n")
+                for n in row2: 
+                     txt_NbreStat.insert(END,*n)
+            
+            elif  txt_prov.get() and txt_comm.get():
+                
+                print('ICI Manque coline')
+                query3= f"select id from tbl_localisation where province like '{txt_prov.get()}' and commune like '{txt_comm.get()}' and type_point_d_eau like '{txt_PE.get()}'"
+                query4= f"select count(*) from tbl_localisation where province like '{txt_prov.get()}' and commune like '{txt_comm.get()}' and type_point_d_eau like '{txt_PE.get()}'"
+                mycursor = mydb.cursor()
+                mycursor.execute(query3)
+                row3 = mycursor.fetchall()
+                
+                mycursor.execute(query4)
+                row4 = mycursor.fetchall()
+                
+                txt_aff_frame.delete('1.0',END)
+                txt_NbreStat.delete('1.0',END)
+                
+                for p in row3: 
+                    txt_aff_frame.insert(END,f"{p[0]}\n")
+                for s in row4:
+                     txt_NbreStat.insert(END,*s)
+            
+            else:
+                print("la selection est province!!")
+            '''
+                print("province est selectionné!")
+                query5= f"select id from tbl_localisation where province like '{txt_prov.get()}' and type_point_d_eau like '{txt_PE.get()}'"
+                query6= f"select count(*)  from tbl_localisation where province like '{txt_prov.get()}' and type_point_d_eau like '{txt_PE.get()}'"
+                mycursor = mydb.cursor()
+                mycursor.execute(query5)
+                row = mycursor.fetchall()
+                
+                mycursor.execute(query6)
+                row1 = mycursor.fetchall()
+                
+                txt_aff_frame.delete('1.0',END)
+                txt_NbreStat.delete('1.0',END)
+                
+                for i in row:
+                    txt_aff_frame.insert(END,f"{i[0]}\n")
+                for k in row1:
+                    txt_NbreStat.insert(END,*k)
+            '''  
 
         aff_frame = Frame(Loc_frame,bd=5, relief=GROOVE, bg="white", width=260,height=410)
         aff_frame.grid(stick=W,padx=5,pady=10)
-
-        txt_aff_frame= ttk.Entry(aff_frame, font=("times new roman",12, "bold"),state="readonly")
-        txt_aff_frame.place(x=0, y = 0,width=250,height=400)
         
+        scrollbar=Scrollbar(aff_frame,orient=VERTICAL)
+        scrollbar.place(x=250, y=0, height=400)
+
+        txt_aff_frame= Text(aff_frame, font=("times new roman",12, "bold"),yscrollcommand=scrollbar.set)
+        txt_aff_frame.place(x=0, y = 0,width=250,height=400)
+        scrollbar.config(command=txt_aff_frame.yview)
+        
+
         lbl_NbreStat = Label(self, text="Nombre de stations :", font=("times new roman", 12, "bold"), bg="silver")
         lbl_NbreStat.place(x=5, y=665)
 
-        txt_NbreStat= ttk.Entry(self, font=("times new roman",12, "bold"), state="readonly")
-        txt_NbreStat.place(x= 200, y = 665)
+        txt_NbreStat= Text(self, font=("times new roman",12, "bold"),bg='beige',fg='blue')
+        txt_NbreStat.place(x= 160, y = 665, width=70 ,height=25)
+        
 
         DatD_frame = LabelFrame(self, text="Date de début", font=("times new roman",12), bg="white")
         DatD_frame.place(x=405, y=60, width=200, height=55)
 
-        txt_ecri_dat_deb = DateEntry(DatD_frame, font=("times new roman", 15),width=17, bg="lightyellow", state="readonly", locale='fr_FR',date_pattern = 'dd/mm/yyyy')
+        txt_ecri_dat_deb = DateEntry(DatD_frame, font=("times new roman", 15),width=17, bg="lightyellow", locale='fr_FR',date_pattern = 'dd/mm/yyyy')
         txt_ecri_dat_deb.grid(row=0, column=0, sticky=W, padx=0, pady=0)
 
         DatF_frame = LabelFrame(self, text="Date de fin", font=("times new roman",12), bg="white")
         DatF_frame.place(x=605, y=60, width=200, height=55)
 
-        txt_ecri_dat_fin = DateEntry(DatF_frame, font=("times new roman", 15),width=17, bg="lightyellow", state="readonly", locale='fr_FR',date_pattern = 'dd/mm/yyyy')
+        txt_ecri_dat_fin = DateEntry(DatF_frame, font=("times new roman", 15),width=17, bg="lightyellow", locale='fr_FR',date_pattern = 'dd/mm/yyyy')
         txt_ecri_dat_fin.grid(row=0, column=0, sticky=W, padx=0, pady=0)
 
         Param_frame = LabelFrame(self, text="Paramètres", font=("times new roman",12), bg="white")
@@ -872,7 +952,7 @@ class RequeteIso(Toplevel):
         Param_frame2 = Frame(Param_frame, bd=5, relief=GROOVE, bg="white",width=315,height=340)
         Param_frame2.grid(row=1, column=0, sticky=W, padx=5, pady=2)
 
-        txt_Param_frame2= ttk.Entry(Param_frame2, font=("times new roman",12, "bold"),state="readonly")
+        txt_Param_frame2= Text(Param_frame2, font=("times new roman",12, "bold"))
         txt_Param_frame2.place(x=0, y = 0,width=305,height=325)
 
 
@@ -891,13 +971,22 @@ class RequeteIso(Toplevel):
         Sav_btn = Button(btn_frame, text="Enregistrer",cursor="hand2", font=("Times new roman",13, "bold"),width=15, bg="green", fg="black")
         Sav_btn.grid(row=0,column=0, sticky=W, padx=20, pady=2)
 
-        Abrt = Button(btn_frame,text="Quiter",cursor="hand2", font=("Times new roman",13, "bold"),width=15, bg="red", fg="black")
+        Abrt = Button(btn_frame,text="Quiter",cursor="hand2",command=self.quit, font=("Times new roman",13, "bold"),width=15, bg="red", fg="black")
         Abrt.grid(row=0,column=1,sticky=W,padx=5,pady=2)
 
         #scroll_y = Scrollbar(aff_frame, orient=VERTICAL)
         #scroll_y.pack(Fill=Y,side=RIGHT)
         #scroll_y.config(command = aff_frame.yview)
-
+        
+        txt_PE.bind("<<ComboboxSelected>>",insertText)
+        txt_prov.bind("<<ComboboxSelected>>", insertText,fonctionprov)
+        txt_comm.bind("<<ComboboxSelected>>", insertText,fonctionComm)
+        txt_coln.bind("<<ComboboxSelected>>", insertText,fonctionComm)
+        
+        insertText()   
+        
+    def quit(self):
+          self.destroy()
 
 
 if __name__ =="__main__":
